@@ -2,12 +2,8 @@ name: Build and push image to ECR - Test
 
 on: push
 jobs:
-  
-  build:
-    
-    name: Build Image
+  Testing:
     runs-on: ubuntu-latest
-   
     steps:
     - name: Check out code
       uses: actions/checkout@v2
@@ -27,7 +23,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: test_pipeline
-        IMAGE_TAG: my_image
+        IMAGE_TAG: digitalrw-astra-dev
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
