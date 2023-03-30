@@ -1,4 +1,4 @@
-name: Build and push image to ECR
+name: Testing
 
 on: push
 jobs:
@@ -23,8 +23,9 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
       with:
-        username: ${{ secrets.AWS_ACCESS_KEY_ID_IAM }}
-        password: ${{ secrets.AWS_SECRET_ACCESS_KEY_IAM }}
+          registry: ${{secrets.AWS_ECRACCOUNTID}}.dkr.ecr.us-east-1.amazonaws.com
+          username: ${{ secrets.AWS_ACCESS_KEY_ID_IAM }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY_IAM }}
 
     - name: Build, tag, and push image to Amazon ECR
       env:
